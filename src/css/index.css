@@ -28,17 +28,79 @@ body {
     height: 155px;
 }
 
-.filter-jobs {
+.filter-box {
+    /* display: none; */
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--clr-job-bg);
+    width: 80%;
+    margin: -25px auto 0;
+    border-radius: 8px;
     display: none;
 }
 
+.filter-box.show {
+    display: flex;
+}
+
+.filter-box > div {
+    flex: 1 0 80%;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+/* these will be created in javascript */
+/* =============================== */
+.filtered-jobs {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--clr-bg);
+    color: var(--clr-primary);
+    border-radius: 4px;
+    font-weight: 700;
+    margin: .5rem;
+}
+
+.filtered-jobs p {
+    padding: .5rem;
+}
+
+.filtered-jobs span {
+    background-color: var(--clr-primary);
+    color: #ffffff;
+    padding: .5rem .7rem;
+    border-radius: 0 4px 4px 0;
+}
+
+.filtered-jobs span:hover {
+    background-color: var(--clr-secondary);
+    cursor: pointer;
+    color: var(--clr-primary);
+    
+}
+
+/* ================================= */
+
+.clear {
+    color: var(--clr-secondary);
+    font-weight: 700;
+}
+
+.clear:hover {
+    text-decoration: underline;
+    color: var(--clr-primary);
+    cursor: pointer;
+}
+
 .jobs {
-    padding: 4rem 1.5rem 2rem;
+    padding: 12% 7% 7.5%;
 }
 
 .job-listing {
     background-color: var(--clr-job-bg);
-    box-shadow: 0px 15px 25px -1px hsla(180, 29%, 50%, 0.308);
+    box-shadow: 0px 15px 25px -1px hsla(180, 37%, 72%, 0.438);
     border-radius: 6px;
     padding: 1rem 1.5rem 0;
     position: relative;
@@ -50,14 +112,14 @@ body {
 
 .job-listing:first-child,
 .job-listing:nth-child(2) {
-    border-left: 4px solid var(--clr-primary);
+    border-left: .5rem solid var(--clr-primary);
 }
 
 .logo {
     position: absolute;
     top: -24px;
     left: 20px;
-    width: 15%;
+    width: 3rem;
 }
 
 .logo img {
@@ -83,38 +145,46 @@ body {
     margin-right: .5rem;
 }
 
-.job-details span {
+.priority span {
     color: var(--clr-job-bg);
     border-radius: 25px;
-    padding: .4rem .6rem;
+    padding: .3rem .6rem .15rem;
     text-transform: uppercase;
     margin-left: .5rem;
 }
 
-.job-details span:first-of-type {
+.priority span:first-of-type {
     background-color: var(--clr-primary);
 }
 
-.job-details span:nth-of-type(2) {
+.priority span:nth-of-type(2) {
     background-color: var(--clr-secondary);
 }
 
-.job-title, .type-location {
-    padding: .5rem 0;
+.job-title {
+    padding-top: .6rem;
+}
+
+.job-title:hover,
+.job-title:focus {
+    color: var(--clr-primary);
+    cursor: pointer;
+}
+
+.job-title:focus {
+    outline: 1px solid var(--clr-secondary); 
 }
 
 .type-location {
-    display: flex;
-    justify-content: space-between;
-    width: 85%;
+    width: 90%;
     color: var(--clr-accent);
-    margin-bottom: .8rem;
-    font-size: .9rem
+    padding-bottom: 1rem;
+    font-size: .9rem;
 }
 
-.type-location li:first-child,
-.skills li {
-    list-style-type: none;
+.type-location span {
+    font-size: 2rem;
+    vertical-align: bottom;
 }
 
 .skills {
@@ -132,12 +202,66 @@ body {
 }
 
 .skills li {
+    list-style-type: none;
     padding: .5rem;  
     background-color: var(--clr-bg);
     margin-right: 1em;
     margin-bottom: 1rem;
     font-weight: 700;
     border-radius: 4px;
+}
+
+.skills li:hover {
+    background-color: var(--clr-primary);
+    color: var(--clr-job-bg);
+    cursor: pointer;
+}
+
+
+@media screen and (min-width: 1026px) {
+    .filter-box {
+        padding: 2% 4%;
+    }
+
+    .jobs {
+        padding: 5% 10%;
+    }
+
+    .job-listing {
+        display: grid;
+        grid-template-columns: 85px 1fr 2fr;
+        align-items: center;
+        gap: 2rem;
+        padding-bottom: 1rem;
+        padding-left: 2rem;
+    }
+
+    .job-listing:not(:last-of-type) {
+        margin-bottom: 1.5rem;
+    }
+
+    .logo {
+        position: initial;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .type-location {
+        padding-top: 0;
+    }
+
+    .skills {
+        width: auto;
+        justify-self: end;
+    }
+
+    .skills ul{
+        border: 0;
+        flex-wrap: nowrap;
+    }
+
+
+
 }
 
 

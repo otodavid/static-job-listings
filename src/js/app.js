@@ -1,66 +1,95 @@
-const app = () => {
-    const skill = document.querySelectorAll('.skills li');
-    const filteredSkill = document.querySelector('.filtered-skill');
-    const filterBox = document.querySelector('.filter-box');
-    const clearButton = document.querySelector('.clear');
-  
+const roles = Array.from(document.querySelectorAll('li[data-role]'));
+const languages = Array.from(document.querySelectorAll('li[data-languages]'));
+const levels = Array.from(document.querySelectorAll('li[data-level]'));
+const tools = Array.from(document.querySelectorAll('li[data-tools]'));
+const filterBox = document.querySelector('.filter-box');
+const filteredSkills = document.querySelector('.filtered-skills');
+const clearAllBtn = document.querySelector('.clear');
+const allJobs = Array.from(document.querySelectorAll('.job'));
 
-    const skillArray = [].slice.call(skill);
+const categories = [].concat(roles, languages, levels, tools);
 
-    const createFilteredElement = () => {
-
-    }
-
-    skillArray.forEach(item => {
-        item.addEventListener('click', () => {
-            // show the filter box
-            filterBox.classList.add('show');
-
-            // create an element
-            const filteredElement = document.createElement('div');
-            const elementText = document.createElement('p');
-            filteredElement.appendChild(elementText);
-            elementText.textContent = item.textContent;
-
-            const removeSign = document.createElement('span');
-            removeSign.textContent = 'X';
-            removeSign.classList.add('remove-skill');
-
-            filteredElement.appendChild(removeSign);
-            filteredElement.classList = 'filtered-jobs';
-
-
-            // add element to the filter box
-            filteredSkill.appendChild(filteredElement);
-
-
-            // remove individual skill
-            const removeSkill = document.querySelectorAll('.remove-skill');
-
-        let removeSkillArray = [].slice.call(removeSkill);
-
-        removeSkillArray.forEach(element => {
-            console.log(removeSkillArray);
-        
-            element.addEventListener('click', () => {
-                let elementParent = element.parentNode.parentNode;
-                elementParent.removeChild(element.parentNode);
-            })
-        });
-        });
-    });
-
-
-    clearButton.addEventListener('click', () => {
-        // remove filtered skills
-        while (filteredSkill.firstChild) {
-            filteredSkill.removeChild(filteredSkill.firstChild);
-        }
-
-        // remove the filter box
-        filterBox.classList.remove('show');
+categories.forEach(category => {
+    category.addEventListener('click', () => {
+        filterBox.classList.add('show');
+        createFilterUI(category);
+        filterJobs();
     })
+})
 
+const createFilterUI = function (filterName) {
+    const filter = document.createElement('div');
+    filter.classList.add('filter');
+
+    const filterValue = document.createElement('span');
+    filterValue.textContent = filterName.textContent;
+    filterValue.classList.add('filter-name');
+
+    const deleteBtn = document.createElement('span');
+    deleteBtn.textContent = 'X';
+    deleteBtn.classList.add('delete-btn');
+
+    filter.appendChild(filterValue);
+    filter.appendChild(deleteBtn);
+    filteredSkills.appendChild(filter);
+
+    const removeFilter = Array.from(document.querySelectorAll('.delete-btn'));
+    removeFilter.forEach(btn => {
+        btn.addEventListener('click', () => {
+            btn.parentElement.remove();
+            filterJobs();
+            if(filteredSkills.childNodes.length < 1) {
+                filterBox.classList.remove('show');
+            }
+        })
+    })
 }
 
-app();
+const filterJobs = function () {
+    //retrieve each job categories
+    let   jobCategories = Array.from(document.querySelectorAll('.role-level-languages'));
+ 
+    jobCategories = jobCategories.map(item => Array.from(item.children));
+
+    // retrieve the name and first parent element of each job category
+    const eachCategoryDetails = jobCategories.map(category => {
+        return category.map(item => {
+            return {
+                name: item.textContent,
+                company: item.parentElement.parentElement.parentElement
+            }
+        })
+    })
+
+    // this is to show all job-listing when a filter's delete button is clicked
+    // the codes below it will filter through again based on the filters present in the filter box
+    allJobs.forEach(job => job.classList.remove('hide'));
+
+    // use the filters in the filterbox to filter through the job listing
+    const filtersPresent = Array.from(document.querySelectorAll('.filter-name'));
+    filtersPresent.forEach(filter => {
+        eachCategoryDetails.forEach(category => {
+            if (category.map(item => item.name)
+            .includes(filter.textContent)) {
+                return;
+            }
+            category.forEach(item => {
+                item.company.classList.add('hide');
+            })
+        })
+    })
+}
+
+const clearAllFilters = function () {
+    while (filteredSkills.firstChild) {
+        filteredSkills.removeChild(filteredSkills.firstChild);
+    }
+
+    allJobs.forEach(item => {
+        item.classList.remove('hide');
+    })
+
+    filterBox.classList.remove('show');
+}
+
+clearAllBtn.addEventListener('click', clearAllFilters);

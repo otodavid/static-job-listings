@@ -29,11 +29,9 @@ body {
 }
 
 .filter-box {
-    /* display: none; */
-    display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    padding: 1rem;
+    padding: .7rem .5rem;
     background-color: var(--clr-job-bg);
     width: 80%;
     margin: -25px auto 0;
@@ -45,40 +43,40 @@ body {
     display: flex;
 }
 
-.filter-box > div {
+.filtered-skills {
     flex: 1 0 80%;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row wrap;    
 }
 
 /* these will be created in javascript */
 /* =============================== */
-.filtered-jobs {
+.filter {
     display: flex;
     justify-content: space-between;
-    background-color: var(--clr-bg);
     color: var(--clr-primary);
     border-radius: 4px;
     font-weight: 700;
     margin: .5rem;
 }
 
-.filtered-jobs p {
+.filter-name {
     padding: .5rem;
+    background-color: var(--clr-bg);
+    border-radius: 4px 0 0 4px;
 }
 
-.filtered-jobs span {
+.delete-btn {
     background-color: var(--clr-primary);
     color: #ffffff;
     padding: .5rem .7rem;
     border-radius: 0 4px 4px 0;
 }
 
-.filtered-jobs span:hover {
+.delete-btn:hover {
     background-color: var(--clr-secondary);
     cursor: pointer;
-    color: var(--clr-primary);
-    
+    color: var(--clr-job-bg);
 }
 
 /* ================================= */
@@ -86,6 +84,8 @@ body {
 .clear {
     color: var(--clr-secondary);
     font-weight: 700;
+    flex: 1 0 20%;
+    text-align: center;
 }
 
 .clear:hover {
@@ -94,11 +94,11 @@ body {
     cursor: pointer;
 }
 
-.jobs {
+.job-listings {
     padding: 12% 7% 7.5%;
 }
 
-.job-listing {
+.job {
     background-color: var(--clr-job-bg);
     box-shadow: 0px 15px 25px -1px hsla(180, 37%, 72%, 0.438);
     border-radius: 6px;
@@ -106,13 +106,17 @@ body {
     position: relative;
 }
 
-.job-listing:not(:last-of-type) {
+.job:not(:last-of-type) {
     margin-bottom: 3rem;
 }
 
-.job-listing:first-child,
-.job-listing:nth-child(2) {
+.job:first-child,
+.job:nth-child(2) {
     border-left: .5rem solid var(--clr-primary);
+}
+
+.job.hide {
+    display: none;
 }
 
 .logo {
@@ -131,7 +135,7 @@ body {
     padding: 1.3rem 0 0;
 }
 
-.job-details div:first-child {
+.priority {
     display: flex;
     flex-flow: row wrap;
     align-items: center;
@@ -148,7 +152,7 @@ body {
 .priority span {
     color: var(--clr-job-bg);
     border-radius: 25px;
-    padding: .3rem .6rem .15rem;
+    padding: .5rem .6rem .3rem;
     text-transform: uppercase;
     margin-left: .5rem;
 }
@@ -159,10 +163,11 @@ body {
 
 .priority span:nth-of-type(2) {
     background-color: var(--clr-secondary);
-}
+} 
 
 .job-title {
     padding-top: .6rem;
+    color: var(--clr-secondary);
 }
 
 .job-title:hover,
@@ -227,7 +232,7 @@ body {
         padding: 5% 10%;
     }
 
-    .job-listing {
+    .job {
         display: grid;
         grid-template-columns: 85px 1fr 2fr;
         align-items: center;
@@ -236,7 +241,7 @@ body {
         padding-left: 2rem;
     }
 
-    .job-listing:not(:last-of-type) {
+    .job:not(:last-of-type) {
         margin-bottom: 1.5rem;
     }
 

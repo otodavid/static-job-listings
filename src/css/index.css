@@ -23,9 +23,9 @@ body {
 }
 
 .blue-bg {
-    background: var(--clr-primary) url(../images/bg-header-mobile.svg) 0% 0% / 75% no-repeat;
+    background: var(--clr-primary) url(../images/bg-header-mobile.svg) 0% 0% / 100% no-repeat;
     width: 100%;
-    height: 100px;
+    height: 140px;
 }
 
 .filter-box {
@@ -243,7 +243,7 @@ body {
 
 @media screen and (min-width: 1026px) {
     .blue-bg {
-        background-image: url(../images/bg-header-desktop.svg);
+        background: var(--clr-primary) url(../images/bg-header-desktop.svg) 0% 0% / 100% no-repeat;
         height: 140px;
     }
 

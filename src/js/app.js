@@ -26,7 +26,6 @@ const createFilterUI = function (filterName) {
     filterValue.classList.add('filter-name');
 
     const deleteBtn = document.createElement('span');
-    deleteBtn.textContent = 'X';
     deleteBtn.classList.add('delete-btn');
 
     filter.appendChild(filterValue);

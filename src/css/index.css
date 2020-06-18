@@ -1,4 +1,4 @@
-* { 
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -33,9 +33,10 @@ body {
     align-items: center;
     padding: .7rem .5rem;
     background-color: var(--clr-job-bg);
-    width: 80%;
+    width: 85%;
     margin: -25px auto 0;
     border-radius: 8px;
+    box-shadow: 0px 15px 25px -1px hsla(180, 25%, 65%, 0.438);
     display: none;
 }
 
@@ -46,10 +47,10 @@ body {
 .filtered-skills {
     flex: 1 0 80%;
     display: flex;
-    flex-flow: row wrap;    
+    flex-flow: row wrap;
 }
 
-/* these will be created in javascript */
+/* these classes will be created in javascript */
 /* =============================== */
 .filter {
     display: flex;
@@ -57,7 +58,8 @@ body {
     color: var(--clr-primary);
     border-radius: 4px;
     font-weight: 700;
-    margin: .5rem;
+    margin: .6rem 1rem;
+    margin-right: .2rem;
 }
 
 .filter-name {
@@ -67,9 +69,9 @@ body {
 }
 
 .delete-btn {
-    background-color: var(--clr-primary);
+    background: var(--clr-primary) url(../images/icon-remove.svg) center / 45% no-repeat;
     color: #ffffff;
-    padding: .5rem .7rem;
+    padding: .5rem 1rem;
     border-radius: 0 4px 4px 0;
 }
 
@@ -163,7 +165,7 @@ body {
 
 .priority span:nth-of-type(2) {
     background-color: var(--clr-secondary);
-} 
+}
 
 .job-title {
     padding-top: .6rem;
@@ -177,19 +179,19 @@ body {
 }
 
 .job-title:focus {
-    outline: 1px solid var(--clr-secondary); 
+    outline: 1px solid var(--clr-secondary);
 }
 
 .type-location {
-    width: 90%;
+    width: 100%;
     color: var(--clr-accent);
     padding-bottom: 1rem;
     font-size: .9rem;
 }
 
 .type-location span {
-    font-size: 2rem;
-    vertical-align: bottom;
+    font-size: 1.5rem;
+    vertical-align: text-bottom;
 }
 
 .skills {
@@ -208,7 +210,7 @@ body {
 
 .skills li {
     list-style-type: none;
-    padding: .5rem;  
+    padding: .5rem;
     background-color: var(--clr-bg);
     margin-right: 1em;
     margin-bottom: 1rem;
@@ -222,10 +224,41 @@ body {
     cursor: pointer;
 }
 
+.attribution {
+    font-size: 12px;
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.attribution a {
+    color: hsl(228, 45%, 44%);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.attribution a:hover {
+    text-decoration: underline;
+}
+
 
 @media screen and (min-width: 1026px) {
+    .blue-bg {
+        background-image: url(../images/bg-header-desktop.svg);
+        height: 140px;
+    }
+
     .filter-box {
+        width: 80%;
         padding: 2% 4%;
+        margin-top: -45px;
+    }
+
+    .clear {
+        text-align: right;
+    }
+
+    .job-listings {
+        padding: 4% 10% 5%;
     }
 
     .jobs {
@@ -253,6 +286,7 @@ body {
 
     .type-location {
         padding-top: 0;
+        /* padding-bottom: 0; */
     }
 
     .skills {
@@ -260,36 +294,8 @@ body {
         justify-self: end;
     }
 
-    .skills ul{
+    .skills ul {
         border: 0;
         flex-wrap: nowrap;
     }
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.attribution {
-    font-size: 11px;
-    text-align: center;
-    padding: 1rem;
-  }
-
-  .attribution a {
-    color: hsl(228, 45%, 44%);
-  }
